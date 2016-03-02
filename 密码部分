@@ -1,0 +1,22 @@
+#include <stdio.h>
+//设置初始密码
+ int key1=0,key2=0,key3=0,key4=0,key5=0,key6=0;
+ //密码保护函数
+ int enter_key(void)
+{
+	int e_key1 ,e_key2,e_key3,e_key4,e_key5,e_key6;
+	int t;
+	printf("请输入密码（初始为000000）");
+    scanf("%d%d%d%d%d%d",&e_key1,&e_key2,&e_key3,&e_key4,&e_key5,&e_key6);
+	if(e_key1==key1&&e_key2==key2&&e_key3==key3&&e_key4==key4&&e_key5==key5&&e_key6==key6)
+		t=0;
+	else
+		t=1;
+//密码验证
+	 while(t)
+	 {
+		 printf("密码错误，请重新输入");
+	 }
+
+	 
+ }
