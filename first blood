@@ -1,0 +1,63 @@
+#include <stdio.h>
+//设置初始密码
+ int key1=0,key2=0,key3=0,key4=0,key5=0,key6=0;
+ //密码保护函数
+ int enter_key(void)
+{
+    int e_key1 ,e_key2,e_key3,e_key4,e_key5,e_key6;
+    int t=1;
+    printf("请输入密码（初始为000000）\n");
+	//密码验证
+	while(t)
+	{
+		scanf("%1d%1d%1d%1d%1d%1d",&e_key1,&e_key2,&e_key3,&e_key4,&e_key5,&e_key6);
+		if(e_key1==key1&&e_key2==key2&&e_key3==key3&&e_key4==key4&&e_key5==key5&&e_key6==key6)
+		{
+			t=0;
+			printf("欢迎进入!\n");
+		}
+		else
+		{
+			t=1;
+			printf("密码错误，请重新输入\n");
+		}
+     }
+     
+ }
+ //密码修改
+ void key_change(void)
+ {
+	 int t;
+	 int a1,a2,a3,a4,a5,a6;
+	 int b1,b2,b3,b4,b5,b6;
+	 printf("请输入您的新密码（仅限6位）\n");
+	 //两次输入
+	 while(t)
+	 {
+		scanf("%1d%1d%1d%1d%1d%1d",&a1,&a2,&a3,&a4,&a5,&a6);
+		printf("请再次输入\n");
+		scanf("%1d%1d%1d%1d%1d%1d",&b1,&b2,&b3,&b4,&b5,&b6);
+		if(a1==b1&&a2==b2&&a3==b3&&a4==b4&&a5==b5&&a6==b6)
+		{
+			t=0;
+			key1=a1;
+			key2=a2;
+			key3=a3;
+			key4=a4;
+			key5=a5;
+			key6=a6;//确定两次相同后修改
+			printf("修改成功\n");
+		}
+		else
+		{
+			t=1;
+			 printf("两次输入不相同，请重试!\n");
+		}
+	 }
+ }
+ int main (void)
+ {
+	 enter_key();
+	 key_change();
+	 enter_key();
+ }
