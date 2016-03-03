@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include<io.h>
+#define LEN 100
 //设置初始密码
  int key1=0,key2=0,key3=0,key4=0,key5=0,key6=0;
  //密码保护函数
@@ -7,101 +10,119 @@
     int e_key1 ,e_key2,e_key3,e_key4,e_key5,e_key6;
     int t=1;
     printf("请输入密码（初始为000000）\n");
-	//密码验证
-	while(t)
-	{
-		scanf("%1d%1d%1d%1d%1d%1d",&e_key1,&e_key2,&e_key3,&e_key4,&e_key5,&e_key6);
-		if(e_key1==key1&&e_key2==key2&&e_key3==key3&&e_key4==key4&&e_key5==key5&&e_key6==key6)//密码确认
-		{
-			t=0;
-			printf("欢迎进入!\n");
-		}
-		else
-		{
-			t=1;
-			printf("密码错误，请重新输入\n");
-		}
+    //密码验证
+    while(t)
+    {
+        scanf("%1d%1d%1d%1d%1d%1d",&e_key1,&e_key2,&e_key3,&e_key4,&e_key5,&e_key6);
+        if(e_key1==key1&&e_key2==key2&&e_key3==key3&&e_key4==key4&&e_key5==key5&&e_key6==key6)//密码确认
+    	{
+        	t=0;
+            printf("欢迎进入!\n");
+    	}
+        else
+    	{
+        	t=1;
+            printf("密码错误，请重新输入\n");
+    	}
      }
      
  }
  //密码修改
  void key_change(void)
  {
-	 int t;
-	 int a1,a2,a3,a4,a5,a6;
-	 int b1,b2,b3,b4,b5,b6;
-	 printf("请输入您的新密码（仅限6位）\n");
-	 //两次输入
-	 while(t)
-	 {
-		 int *p1=&key1;
-		 int *p2=&key2;
-		 int *p3=&key3;
-		 int *p4=&key4;
-		 int *p5=&key5;
-		 int *p6=&key6;
-		scanf("%1d%1d%1d%1d%1d%1d",&a1,&a2,&a3,&a4,&a5,&a6);
-		printf("请再次输入\n");
-		scanf("%1d%1d%1d%1d%1d%1d",&b1,&b2,&b3,&b4,&b5,&b6);
-		if(a1==b1&&a2==b2&&a3==b3&&a4==b4&&a5==b5&&a6==b6)
-		{
-			t=0;
-			*p1=a1;	
-			*p2=a2;
-			*p3=a3;
-			*p4=a4;
-			*p5=a5;
-			*p6=a6;//确定两次相同后修改
-			printf("修改成功\n");
-		}
-		else
-		{
-			t=1;
-			 printf("两次输入不相同，请重试!\n");
-		}
-	 }
+     int t;
+     int a1,a2,a3,a4,a5,a6;
+     int b1,b2,b3,b4,b5,b6;
+     printf("请输入您的新密码（仅限6位）\n");
+     //两次输入
+     while(t)
+     {
+         int *p1=&key1;
+         int *p2=&key2;
+         int *p3=&key3;
+         int *p4=&key4;
+         int *p5=&key5;
+         int *p6=&key6;
+        scanf("%1d%1d%1d%1d%1d%1d",&a1,&a2,&a3,&a4,&a5,&a6);
+        printf("请再次输入\n");
+        scanf("%1d%1d%1d%1d%1d%1d",&b1,&b2,&b3,&b4,&b5,&b6);
+        if(a1==b1&&a2==b2&&a3==b3&&a4==b4&&a5==b5&&a6==b6)
+    	{
+        	t=0;
+            *p1=a1;	
+            *p2=a2;
+            *p3=a3;
+            *p4=a4;
+            *p5=a5;
+            *p6=a6;//确定两次相同后修改
+            printf("修改成功\n");
+    	}
+        else
+    	{
+        	t=1;
+             printf("两次输入不相同，请重试!\n");
+    	}
+     }
  }
  //打印分割线
  void line(void)
  {
-	 printf("***********************\n");
+     printf("***********************\n");
  }
-
+//文件处理
  int input_doc (void)
  {
-	 FILE *fp;
-	 char str[100];
-	 char buf[30];
-	 printf("欢迎进入文件储存\n");
-	 line ();
-	 printf("请按物品名称，编码，价格，发货地，签收地，类型名，负责人的顺序依次键入, 以空格隔开，以回车结束\n");
-	 gets(str);
-	 if((fp=fopen("abc.txt","w+"))==NULL)
-	 {
-		 printf("不能建立abc文件.\n");
-		 exit(0);
-	 }
-	 fwrite(str,strlen(str)+1,1,fp);//将str的一个数据输出到fp所指文件中，每个数据为str+1个字节
-	 fseek(fp,SEEK_SET,0);
-	 fread(buf,strlen(str)+1,1,fp);//将fp中读取的1个数据，每一项长度是str+1个字节放置到buf的缓冲区
-	 printf("%s\n",buf);
-	 fclose(fp);
+     FILE *fp;
+     char str[100];
+     char buf[30];
+     printf("欢迎进入文件储存\n");
+     line ();
+     printf("请按物品名称，编码，价格，发货地，签收地，类型名，负责人的顺序依次键入, 以空格隔开，以回车结束\n");
+     gets(str);
+     if((fp=fopen("abc.txt","w+"))==NULL)
+     {
+         printf("不能建立abc文件.\n");
+         exit(0);
+     }
+     fwrite(str,strlen(str)+1,1,fp);//将str的一个数据输出到fp所指文件中，每个数据为str+1个字节
+     fseek(fp,SEEK_SET,0);
+     fread(buf,strlen(str)+1,1,fp);//将fp中读取的1个数据，每一项长度是str+1个字节放置到buf的缓冲区
+     printf("%s\n",buf);
+     fclose(fp);
  }
+ //打开查找文件
+ 
+void  opendoc(void)
+{
+    FILE *fp;
+    char filename[LEN];
+    printf("请输入您要打开的文件的完整路径及文件名：");
+    gets(filename);
+    fp=fopen(filename,"r");  //打开已存在文件
+    if(fp==NULL)//判断是否打开文件成功
+    {
+        printf("\n打开文件失败，%s可能不存在，请检查后再次输入\n");
+        exit(1);
+
+    }
+    printf("\n%s文件打开成功\n");
+}
 
  int main (void)
- {	 
-	 int aba;
-	 printf("欢迎进入邮件管理系统!\n");
-	 line ();
-	 enter_key();
-	 line();
-	 printf("请问您想做什么？\n");
-	 printf("1-修改密码  2-文件储存");//选择类型
-	 scanf("%d",&aba);
-	  switch(aba)
-	 {
-		 case 1: key_change();break;
-		 case 2:input_doc();break;
-	 }
-	
+ {   
+     int aba;
+     printf("欢迎进入邮件管理系统!\n");
+     line ();
+     enter_key();
+     line();
+     printf("请问您想做什么？\n");
+     printf("1-修改密码  2-文件储存  3-文本阅读");//选择类型
+     scanf("%d",&aba);
+      switch(aba)
+     {
+         case 1: key_change();break;
+         case 2:input_doc();break;
+         case 3:opendoc();break;
+     }
+    
  }
