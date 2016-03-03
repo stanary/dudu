@@ -107,6 +107,66 @@ void  opendoc(void)
     }
     printf("\n%s文件打开成功\n");
 }
+struct list_type
+{
+	char name[20];
+	int  num;
+	int  pri[6];
+	char from_place[20];
+	char diliver_place[20];
+	int kind;
+	char  charge_man[20];
+};
+//文件键入
+int input (void)
+{
+	struct list_type w;
+	int i;
+	printf("欢迎进入信息录入系统");
+	printf("请按物品名称，编码，价格，发货地，签收地，类型名，负责人的顺序依次键入\n");
+	printf("请输入文件名称（20字）\n");
+	for(i=0;i<20;i++)
+	{
+		scanf("%c",&w.name[i]);
+	}
+	printf("请输入8位编码\n");
+		scanf("%8d",&w.num);
+	printf("请输入价格\n");
+	for(i=0;i<6;i++)
+		{
+		scanf("%1d",&w.pri[i]);
+		}
+	printf("请输入发货地\n");
+	for(i=0;i<20;i++)
+		{
+		scanf("%c",&w.from_place[i]);
+		}
+	printf("请输入签收地\n");
+	for(i=0;i<20;i++)
+		{
+		scanf("%c",&w.diliver_place[i]);
+		}
+	printf("请输入负责人\n");
+	for(i=0;i<20;i++)
+		{
+		scanf("%c",&w.diliver_place[i]);
+	}
+	printf("请输入类型（1-服饰，2-食品饮料，3-运动器材，4-电子产品，5-学习用品，6-其他）");
+	    scanf ("%d",&w.kind);
+	switch(w.kind)
+	{
+		case 1:printf("服饰");break;
+		case 2:printf("食品饮料");break;
+		case 3:printf("运动器材");break;
+		case 4:printf("电子产品");break;
+		case 5:printf("学习用品");break;
+		case 6:printf("其他");break;
+	
+	}
+
+		
+
+}
 
  int main (void)
  {   
