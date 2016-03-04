@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<io.h>
-#define LEN 100
+#include <conio.h>
 //设置初始密码
  int key1=0,key2=0,key3=0,key4=0,key5=0,key6=0;
  //密码保护函数
@@ -10,179 +9,218 @@
     int e_key1 ,e_key2,e_key3,e_key4,e_key5,e_key6;
     int t=1;
     printf("请输入密码（初始为000000）\n");
-    //密码验证
-    while(t)
-    {
-        scanf("%1d%1d%1d%1d%1d%1d",&e_key1,&e_key2,&e_key3,&e_key4,&e_key5,&e_key6);
-        if(e_key1==key1&&e_key2==key2&&e_key3==key3&&e_key4==key4&&e_key5==key5&&e_key6==key6)//密码确认
-    	{
-        	t=0;
-            printf("欢迎进入!\n");
-    	}
-        else
-    	{
-        	t=1;
-            printf("密码错误，请重新输入\n");
-    	}
+	//密码验证
+	while(t)
+	{
+		scanf("%1d%1d%1d%1d%1d%1d",&e_key1,&e_key2,&e_key3,&e_key4,&e_key5,&e_key6);
+		if(e_key1==key1&&e_key2==key2&&e_key3==key3&&e_key4==key4&&e_key5==key5&&e_key6==key6)//密码确认
+		{
+			t=0;
+			printf("欢迎进入!\n");
+		}
+		else
+		{
+			t=1;
+			printf("密码错误，请重新输入\n");
+		}
      }
+	return 0;
      
  }
  //密码修改
  void key_change(void)
  {
-     int t;
-     int a1,a2,a3,a4,a5,a6;
-     int b1,b2,b3,b4,b5,b6;
-     printf("请输入您的新密码（仅限6位）\n");
-     //两次输入
-     while(t)
-     {
-         int *p1=&key1;
-         int *p2=&key2;
-         int *p3=&key3;
-         int *p4=&key4;
-         int *p5=&key5;
-         int *p6=&key6;
-        scanf("%1d%1d%1d%1d%1d%1d",&a1,&a2,&a3,&a4,&a5,&a6);
-        printf("请再次输入\n");
-        scanf("%1d%1d%1d%1d%1d%1d",&b1,&b2,&b3,&b4,&b5,&b6);
-        if(a1==b1&&a2==b2&&a3==b3&&a4==b4&&a5==b5&&a6==b6)
-    	{
-        	t=0;
-            *p1=a1;	
-            *p2=a2;
-            *p3=a3;
-            *p4=a4;
-            *p5=a5;
-            *p6=a6;//确定两次相同后修改
-            printf("修改成功\n");
-    	}
-        else
-    	{
-        	t=1;
-             printf("两次输入不相同，请重试!\n");
-    	}
-     }
+	 int t;
+	 int a1,a2,a3,a4,a5,a6;
+	 int b1,b2,b3,b4,b5,b6;
+	 printf("请输入您的新密码（仅限6位）\n");
+	 //两次输入
+	 while(t)
+	 {
+		 int *p1=&key1;
+		 int *p2=&key2;
+		 int *p3=&key3;
+		 int *p4=&key4;
+		 int *p5=&key5;
+		 int *p6=&key6;
+		scanf("%1d%1d%1d%1d%1d%1d",&a1,&a2,&a3,&a4,&a5,&a6);
+		printf("请再次输入\n");
+		scanf("%1d%1d%1d%1d%1d%1d",&b1,&b2,&b3,&b4,&b5,&b6);
+		if(a1==b1&&a2==b2&&a3==b3&&a4==b4&&a5==b5&&a6==b6)
+		{
+			t=0;
+			*p1=a1;	
+			*p2=a2;
+			*p3=a3;
+			*p4=a4;
+			*p5=a5;
+			*p6=a6;
+			//确定两次相同后修改
+			printf("修改成功\n");
+		}
+		else
+		{
+			t=1;
+			 printf("两次输入不相同，请重试!\n");
+		}
+	 }
  }
  //打印分割线
  void line(void)
  {
-     printf("***********************\n");
+	 printf("***********************\n");
  }
-//文件处理
+
  int input_doc (void)
  {
-     FILE *fp;
-     char str[100];
-     char buf[30];
-     printf("欢迎进入文件储存\n");
-     line ();
-     printf("请按物品名称，编码，价格，发货地，签收地，类型名，负责人的顺序依次键入, 以空格隔开，以回车结束\n");
-     gets(str);
-     if((fp=fopen("abc.txt","w+"))==NULL)
-     {
-         printf("不能建立abc文件.\n");
-         exit(0);
-     }
-     fwrite(str,strlen(str)+1,1,fp);//将str的一个数据输出到fp所指文件中，每个数据为str+1个字节
-     fseek(fp,SEEK_SET,0);
-     fread(buf,strlen(str)+1,1,fp);//将fp中读取的1个数据，每一项长度是str+1个字节放置到buf的缓冲区
-     printf("%s\n",buf);
-     fclose(fp);
+	 FILE *fp;
+	 char str[100];
+	 char buf[30];
+	 printf("欢迎进入文件储存\n");
+	 line ();
+	 printf("请按物品名称，编码，价格，发货地，签收地，类型名，负责人的顺序依次键入, 以空格隔开，以回车结束\n");
+	 gets(str);
+	 if((fp=fopen("abc.txt","w+"))==NULL)
+	 {
+		 printf("不能建立abc文件.\n");
+		 exit(0);
+	 }
+	 fwrite(str,strlen(str)+1,1,fp);//将str的一个数据输出到fp所指文件中，每个数据为str+1个字节
+	 fseek(fp,SEEK_SET,0);
+	 fread(buf,strlen(str)+1,1,fp);//将fp中读取的1个数据，每一项长度是str+1个字节放置到buf的缓冲区
+	 printf("%s\n",buf);
+	 fclose(fp);
+	 return 0;
  }
- //打开查找文件
- 
-void  opendoc(void)
+ //按日期存储
+int date_charge (void)
 {
-    FILE *fp;
-    char filename[LEN];
-    printf("请输入您要打开的文件的完整路径及文件名：");
-    gets(filename);
-    fp=fopen(filename,"r");  //打开已存在文件
-    if(fp==NULL)//判断是否打开文件成功
-    {
-        printf("\n打开文件失败，%s可能不存在，请检查后再次输入\n");
-        exit(1);
-
-    }
-    printf("\n%s文件打开成功\n");
-}
-struct list_type
-{
-	char name[20];
-	int  num;
-	int  pri[6];
-	char from_place[20];
-	char diliver_place[20];
-	int kind;
-	char  charge_man[20];
-};
-//文件键入
-int input (void)
-{
-	struct list_type w;
-	int i;
-	printf("欢迎进入信息录入系统");
-	printf("请按物品名称，编码，价格，发货地，签收地，类型名，负责人的顺序依次键入\n");
-	printf("请输入文件名称（20字）\n");
-	for(i=0;i<20;i++)
+	int xiy=1;
+	printf("欢迎进入邮件日程查看与管理");
+	//多次存储
+	while(xiy)
 	{
-		scanf("%c",&w.name[i]);
-	}
-	printf("请输入8位编码\n");
-		scanf("%8d",&w.num);
-	printf("请输入价格\n");
-	for(i=0;i<6;i++)
+		int a,b;
+		int month,date,year;
+		int *p1=(int *)malloc(sizeof(int));
+		int *p2=(char *)malloc(sizeof(char));
+loop1:printf("请输入邮件日期（形式例如20160101）");
+		scanf("%d",&a);
+		printf("请输入8位有效编码\n");
+		scanf("%d",&b);
+		year=a/10000;
+		month=a/100%100;
+		date=a%100;
+		//数据合法性检验
+		if(a/100000000||!a/10000000||b/100000000||!b/10000000||month>12||date>31)
 		{
-		scanf("%1d",&w.pri[i]);
+			printf("日期或编码格式错误，请检查!（您的日期/编码长度错误或月份/日期长度越界）\n");
+			goto loop1;
 		}
-	printf("请输入发货地\n");
-	for(i=0;i<20;i++)
-		{
-		scanf("%c",&w.from_place[i]);
-		}
-	printf("请输入签收地\n");
-	for(i=0;i<20;i++)
-		{
-		scanf("%c",&w.diliver_place[i]);
-		}
-	printf("请输入负责人\n");
-	for(i=0;i<20;i++)
-		{
-		scanf("%c",&w.diliver_place[i]);
-	}
-	printf("请输入类型（1-服饰，2-食品饮料，3-运动器材，4-电子产品，5-学习用品，6-其他）");
-	    scanf ("%d",&w.kind);
-	switch(w.kind)
-	{
-		case 1:printf("服饰");break;
-		case 2:printf("食品饮料");break;
-		case 3:printf("运动器材");break;
-		case 4:printf("电子产品");break;
-		case 5:printf("学习用品");break;
-		case 6:printf("其他");break;
-	
-	}
-
 		
+		if(month==4||month==6||month==9||month==11)
+		{
+			if(date==31)
+			{
+				printf("您的日期不合法（4,6,9,11月无31日）\n");
+				goto loop1;
+			}
+		}
+		if(year%4)
+		{
+			if(date>28)
+			{
+				printf("您的日期不合法!（非闰年，无29,30,31日）\n");
+				goto loop1;
+			}
+		}
+		else
+		{
+			if(date>29)
+			{
+				printf("您的日期不合法（闰年，无30日）\n");
+				goto loop1;
+
+			}
+		}
+			printf("请选择服务种类：1-继续键入  0-完成键入\n");
+			scanf("%d",&xiy);
+	}
+	return 0;
+}
+
+//员工薪金计算
+int salary (void)
+{
+	int sa,lev,xiu,jia,i;
+
+	printf("欢迎进入员工薪金计算系统!\n");
+loop2:printf("请您输入您的员工等级 \n 1-p1\n 2-p2\n 3-p3\n 4-p4\n");
+	  scanf("%d",&lev);
+	if(lev<1||lev>4)
+	{
+		printf("请检查您的员工等级（最高级为4级）\n");
+		goto loop2;
+	}
+	printf("请输入您本月的休假时间：\n");
+	scanf("%d",&xiu);
+	if(xiu>30||xiu<0)
+	{
+		printf("您输入的日期不合法!\n");
+		goto loop2;
+
+	}
+	printf("请输入您本月的加班时间：\n");
+	scanf("%d",&jia);
+		if(jia>30||jia<0)
+	{
+		printf("您输入的日期不合法!\n");
+		goto loop2;
+
+	}
+		printf("请输入您的奖金（未知请输入0）\n");
+		scanf("%d",&i);	
+		sa=800+(500*lev+500)-xiu*50+400*jia+i;
+		if(!i)
+		{
+			printf("尊敬的职工你好，您本月的工资为%d(不含奖金)\n",sa);
+		}
+		else
+		{
+			printf("尊敬的职工你好，您本月的薪酬为%d\n",sa);
+		}
+		return 0;
 
 }
 
  int main (void)
- {   
-     int aba;
-     printf("欢迎进入邮件管理系统!\n");
-     line ();
-     enter_key();
-     line();
-     printf("请问您想做什么？\n");
-     printf("1-修改密码  2-文件储存  3-文本阅读");//选择类型
-     scanf("%d",&aba);
-      switch(aba)
-     {
-         case 1: key_change();break;
-         case 2:input_doc();break;
-         case 3:opendoc();break;
-     }
-    
+ {	 
+	 int aba;
+	 printf("欢迎进入邮件管理系统!\n");
+	 line ();
+	 enter_key();
+	 line();
+	 //操作界面与主界面
+loop: printf("请问您想做什么？\n");
+	 printf(" 1-修改密码 \n 2-文件储存 \n 3-邮件日期管理 \n 4-员工薪金计算  \n 1000-退出\n");//选择类型
+	 scanf("%d",&aba);
+	  switch(aba)
+	 {
+		 case 1: key_change();
+			 line ();
+			 goto loop;
+		 case 2:input_doc();
+			 line ();
+			 goto loop;
+		 case 3:date_charge();
+			 line ();
+			 goto loop;
+		 case 4:salary();
+			 line ();
+			 goto loop;
+		 case 1000:line ();
+			 break;
+	 }
+	printf("欢迎您的使用，再见!\n");
+	return 0;
  }
